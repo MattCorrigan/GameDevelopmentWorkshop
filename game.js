@@ -18,21 +18,20 @@ function setup() {
 
 function keys() {
     
-    if (keyIsDown(65)) {
+    if (keyIsDown(65)) { // a
         player[0] -= playerSpeed;
     }
-    if (keyIsDown(68)) {
+    if (keyIsDown(68)) { // d
         player[0] += playerSpeed;
     }
-    if (keyIsDown(32) && coolDown >= 50) {
+    if (keyIsDown(32) && coolDown >= 50) { // spacebar
         attacking += rotationSpeed;
-        playerSpeed = 10;
         coolDown = 0;
     }
     
 }
 
-function attack() {
+function checkAttack() {
     if (attacking > 0) {
         attacking += rotationSpeed;
         
@@ -44,7 +43,6 @@ function attack() {
         
         // finished attacking
         if (attacking > rotationTimes*2*PI) {
-            playerSpeed = 5;
             attacking = 0;
             attacked = false;
         }
@@ -56,7 +54,7 @@ function draw() {
     
     keys();
     
-    attack();
+    checkAttack();
     
     // draw background
     strokeWeight(3);
